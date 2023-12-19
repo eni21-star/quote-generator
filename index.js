@@ -5,10 +5,12 @@
  const username = document.getElementById("namehtml");
  const images = document.getElementById("picture");
  const profession = document.getElementById("jobb");
+ const ApiUrl = "https://api.quotable.io/random";
 
 
  SurpriseBtn.addEventListener("click", function(){
-
+      
+    
       let person = {
 
           name: "Caleb Ola",
@@ -65,7 +67,7 @@ rndArray.push(person2);
 rndArray.push(person3);
 rndArray.push(person4);
 
-
+Apiget();
 
 function randomnum(){
 
@@ -75,10 +77,8 @@ function randomnum(){
 }
 
 let jackman = randomnum();
-
-username.textContent = jackman.name;
-quotes.textContent = jackman.quote;
 images.src = jackman.image;
+
 profession.textContent = jackman.job;
 
 document.querySelector(".display1").style.display = "block";
@@ -86,3 +86,15 @@ document.querySelector(".display1").style.display = "block";
 
 console.log(jackman);
  })
+
+ async function Apiget(){
+
+  const get = await fetch(ApiUrl);
+  const ret = await get.json();
+  console.log(ret);
+  
+  username.textContent = ret.author;
+  quotes.textContent = ret.content;
+  profession.textContent = jackman.job;
+
+ }
